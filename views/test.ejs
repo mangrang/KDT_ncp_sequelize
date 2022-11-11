@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원 정보</title>
+
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <h1>회원 정보</h1>
+  <a href="/user">HOME</a>
+  <p>ID 수정 불가능, Password, Name 수정 가능</p>
+
+  <% for (let i=0; i < data.length; i++) { %>
+  <!-- <input><%= i %></div>
+  <div>name : <%= data[i].name %></div>
+  <div>id: <%= data[i].userid %></div>
+  <div>pw: <%= data[i].pw %></div> -->
+
+  <form class="form_profile"name="form_profile">
+
+    <!-- readonly: userid는 수정 불가능 (조건임) -->
+    <label for="userid">ID</label>
+    <input id="userid_<%= i %>" type="text" name="userid" value="<%= data[i].userid %>" readonly /><br />
+    <label for="password">Password</label>
+    <input id="password_<%= i %>" type="text" name="pw" value="<%= data[i].pw %>" required /><br />
+    <label for="name">Name</label>
+    <input id="name_<%= i %>" type="text" name="name" value="<%= data[i].name %>" required /><br />
+    <button type="button" onclick="profileEdit(this,'<%= data[i].id %>');">Edit</button>
+    <button type="button" onclick="profileDelete(this,'<%= data[i].id %>');">Delete</button>
+  </form>
+  <br>
+  <% } %>
+</body>
+<script>
+    
+     function profileEdit(obj, id) {
+        // console.log(IDBFactory);
+        // const form = document.forms['form_profile'];
+        const form = obj.closest('.form_profile')
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+       console.log(id);
+
+        axios({
+          method: 'POST',
+          url: '/user/profile/edit',
+          data: {  
+            userid: form.userid.value,
+            pw: form.pw.value,
+            name: form.name.value,
+            id: id
+          },
+        })
+          .then((res) => {
+            return res.data;
+          })
+          .then((data) => {
+            // (1) alert 띄우기
+            alert('수정 성공');
+          });
+      }
+
+  
+</script>
+
+</html>

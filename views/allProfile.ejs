@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 정보</title>
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>회원 정보</h1>
+    <a href="/user">HOME</a>
+    <p>ID 수정 불가능, Password, Name 수정 가능</p>
+    <% for(i=0; i< data.length; i++){ %>
+    <form name="form_profile">
+      <label for="userid">ID</label>
+      <input type="hidden" id="id" value="<%= data[i].id %>" />
+      <!-- readonly: userid는 수정 불가능 (조건임) -->
+      <input
+        id="userid_<%= i %>"
+        type="text"
+        name="userid"
+        value="<%= data[i].userid %>"
+        readonly
+      /><br />
+      <label for="password">Password</label>
+      <input
+        id="password_<%= i %>"
+        type="password"
+        name="pw"
+        value="<%= data[i].pw %>"
+        required
+      /><br />
+      <label for="name">Name</label>
+      <input
+        id="name_<%= i %>"
+        type="text"
+        name="name"
+        value="<%= data[i].name %>"
+        required
+      />
+   
+    </form>
+
+  </body>
+</html>
