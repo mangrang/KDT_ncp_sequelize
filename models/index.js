@@ -2,7 +2,7 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const config = require(__dirname + '/../config/config.json')['production'];
+const config = require(__dirname + '/../config/config.json')['development'];
 // const a = require(__dirname + '/../config/config.json');
 // const a = {
 //   "development": { "username": "user", "password": "1234", "database": "kdt", "host": "127.0.0.1", "dialect": "mysql" },
@@ -16,8 +16,7 @@ let sequelize = new Sequelize(
   config.database,
   config.username,
   config.password,
-  config
-);
+  config,
 // sequelize 객체 선언시 매개변수로 정보들을 받음
 
 db.sequelize = sequelize;
