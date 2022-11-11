@@ -17,6 +17,7 @@ let sequelize = new Sequelize(
   config.username,
   config.password,
   config,
+)
 // sequelize 객체 선언시 매개변수로 정보들을 받음
 
 db.sequelize = sequelize;
