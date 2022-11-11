@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // [라우터 분리]
-const indexRouter = require('./routes'); // index는 생략가능
+const indexRouter = require('./routes/index'); // index는 생략가능
 app.use('/', indexRouter); // localhost:PORT/경로는 기본으로 ./routes/index.js 파일에 선언
 
 const userRouter = require('./routes/user'); // index는 생략가능
